@@ -44,6 +44,12 @@
 				'action' => 'sair'
 			);
 
+			$routes['tweet'] = array(
+				'route' => '/tweet',
+				'controller' => 'AppController',
+				'action' => 'tweet'
+			);
+
 			$this->setRoutes($routes);
 		}
 
