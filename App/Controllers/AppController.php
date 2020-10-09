@@ -69,8 +69,10 @@
 
 			if($acao == 'seguir') {
 				$usuario->seguirUsuario($id_usuario);
+				header('location: /quem_seguir');
 			} else if($acao = 'deixar_de_seguir') {
 				$usuario->deixarSeguirUsuario($id_usuario);
+				header('location: /quem_seguir');
 			}
 		}
 	}
