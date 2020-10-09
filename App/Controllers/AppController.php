@@ -44,14 +44,14 @@
 
 			$pesquisarPor = isset($_GET['pesquisarPor']) ? $_GET['pesquisarPor'] : '';
 
-			$usuarios = array();
+			$usuario = Container::getModel('usuario');
+			$usuario->__set('nome', $pesquisarPor);
+			$usuario->__set('id', $_SESSION['id']);
 
 			if($pesquisarPor != '') {
-				$usuario = Container::getModel('usuario');
-				$usuario->__set('nome', $_GET['pesquisarPor']);
-				$usuario->__set('id', $_SESSION['id']);
-
 				$usuarios = $usuario->getAll();
+			} else if($pesquisarPor == '') {
+				$usuarios = $usuario->getAllUsers();
 			}
 
 			$this->view->usuarios = $usuarios;

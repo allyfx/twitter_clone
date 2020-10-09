@@ -98,6 +98,30 @@
 			return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 		}
 
+		public function getAllUsers() {
+			$query = "
+				select
+					*, 
+					(
+						select
+							count(*)
+						from
+							usuarios_seguidores as us
+						where
+							us.id_usuario = :id_usuario and us.id_usuario_seguindo = u.id
+					) as seguindo_sn
+				from
+					usuarios as u
+				where id != :id_usuario
+			";
+
+			$stmt = $this->db->prepare($query);
+			$stmt->bindValue(':id_usuario', $this->__get('id'));
+			$stmt->execute();
+
+			return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+		}
+
 		public function seguirUsuario($id_usuario) {
 			$query = "insert into usuarios_seguidores(id_usuario, id_usuario_seguindo)values(?, ?)";
 			
