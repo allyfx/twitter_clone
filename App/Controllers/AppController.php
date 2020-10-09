@@ -49,6 +49,7 @@
 			if($pesquisarPor != '') {
 				$usuario = Container::getModel('usuario');
 				$usuario->__set('nome', $_GET['pesquisarPor']);
+				$usuario->__set('id', $_SESSION['id']);
 
 				$usuarios = $usuario->getAll();
 			}
