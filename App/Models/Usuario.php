@@ -90,5 +90,26 @@
 
 			return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 		}
+
+		public function seguirUsuario($id_usuario) {
+			$query = "insert into usuarios_seguidores(id_usuario, id_usuario_seguindo)values(?, ?)";
+			
+			$stmt = $this->db->prepare($query);
+			$stmt->bindValue(1, $this->__get('id'));
+			$stmt->bindValue(2, $id_usuario);
+
+			$stmt->execute();
+			return true;
+		}
+
+		public function deixarSeguirUsuario($id_usuario) {
+			$query = "delete from usuarios_seguidores where id_usuario_seguindo = ?";
+
+			$stmt = $this->db->prepare($query);
+			$stmt->bindValue(1, $id_usuario);
+
+			$stmt->execute();
+			return true;
+		}
 	}
 ?>
