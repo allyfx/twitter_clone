@@ -75,5 +75,17 @@
 				header('location: /quem_seguir');
 			}
 		}
+
+		public function deletarTweet() {
+			$this->validaAutenticacao();
+
+			$tweetId = $_GET['tweet_id'];
+
+			$tweet = Container::getModel('Tweet');
+			$tweet->__set('id', $tweetId);
+			$tweet->delete();
+
+			header('location: /timeline');
+		}
 	}
 ?>

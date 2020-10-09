@@ -52,5 +52,15 @@
 
 			return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 		}
+
+		public function delete() {
+			$query = "delete from tweets where id = ?";
+			
+			$stmt = $this->db->prepare($query);
+			$stmt->bindValue(1, $this->__get('id'));
+			$stmt->execute();
+
+			return true;
+		}
 	}
 ?>
