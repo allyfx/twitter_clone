@@ -7,21 +7,19 @@
 
 	class AppController extends Action {
 		public function timeline() {
-			session_start();
+			$this->validaAutenticacao();
 
-			if($_SESSION['id'] == '' || $_SESSION['nome'] == '') {
-				header('location: /');
-			}
+			$tweet = Container::getModel('tweet');
+			$tweet->__set('id_usuario', $_SESSION['id']);
+			$tweets = $tweet->getAll();
+
+			$this->view->tweets = $tweets;
 
 			$this->render('timeline');
 		}
 
 		public function tweet() {
-			session_start();
-
-			if($_SESSION['id'] == '' || $_SESSION['nome'] == '') {
-				header('location: /');
-			}
+			$this->validaAutenticacao();
 
 			$tweet = Container::getModel('Tweet');
 
@@ -31,6 +29,14 @@
 			$tweet->salvar();
 
 			header('location: /timeline');
+		}
+
+		public function validaAutenticacao() {
+			session_start();
+
+			if($_SESSION['id'] == '' || $_SESSION['nome'] == '') {
+				header('location: /');
+			}
 		}
 	}
 ?>
