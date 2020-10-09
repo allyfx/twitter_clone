@@ -23,6 +23,14 @@
 
 			$this->view->tweets = $tweets;
 
+			$usuario = Container::getModel('Usuario');
+
+			$usuario->__set('id', $_SESSION['id']);
+
+			$this->view->totalTweets = $usuario->getTotalTweets();
+			$this->view->totalSeguindo = $usuario->getTotalSeguindo();
+			$this->view->totalSeguidores = $usuario->getTotalSeguidores();
+
 			$this->render('timeline');
 		}
 
@@ -54,6 +62,10 @@
 				$usuarios = $usuario->getAllUsers();
 			}
 
+			$this->view->totalTweets = $usuario->getTotalTweets();
+			$this->view->totalSeguindo = $usuario->getTotalSeguindo();
+			$this->view->totalSeguidores = $usuario->getTotalSeguidores();
+			
 			$this->view->usuarios = $usuarios;
 			$this->render('quemSeguir');
 		}

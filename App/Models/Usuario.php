@@ -142,5 +142,35 @@
 			$stmt->execute();
 			return true;
 		}
+
+		public function getTotalTweets() {
+			$query = "select count(*) as total_tweet from tweets where id_usuario = ?";
+
+			$stmt = $this->db->prepare($query);
+			$stmt->bindValue(1, $this->id);
+
+			$stmt->execute();
+			return $stmt->fetch(\PDO::FETCH_ASSOC);
+		}
+
+		public function getTotalSeguindo() {
+			$query = "select count(*) as total_seguindo from usuarios_seguidores where id_usuario = ?";
+
+			$stmt = $this->db->prepare($query);
+			$stmt->bindValue(1, $this->id);
+
+			$stmt->execute();
+			return $stmt->fetch(\PDO::FETCH_ASSOC);
+		}
+
+		public function getTotalSeguidores() {
+			$query = "select count(*) as total_seguidores from usuarios_seguidores where id_usuario_seguindo = ?";
+
+			$stmt = $this->db->prepare($query);
+			$stmt->bindValue(1, $this->id);
+
+			$stmt->execute();
+			return $stmt->fetch(\PDO::FETCH_ASSOC);
+		}
 	}
 ?>
