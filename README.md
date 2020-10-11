@@ -2,7 +2,7 @@
 <blockquote align='center'>A clone of the social media Twitter, with php and mysql made during the web development course to practice the mvc structure.</blockquote>
 
 ## 💡What is it?
-Twitter Clone is an application developed during the Web Development course to practice structuring mvc.Twitter Clone is an application developed during the Web Development course to practice structuring mvc. It allows you to create an account, follow people, be followed and post new tweets.
+Twitter Clone is an application developed during the Web Development course to practice structuring mvc. It allows you to create an account, follow people, be followed and post new tweets.
 
 ## 💾 Configure database
 To run this application you first need to configure your database.
